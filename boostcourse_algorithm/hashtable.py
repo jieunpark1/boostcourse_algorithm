@@ -34,7 +34,7 @@ print(dic_.items())
 #     if v == "박지은":
 #         print("찾았다!")   #O(n)
 
-for 20250622 in dic_: #hash function  in dictionary => O(1) #리스트의 경우 O(n)
+for "20250622" in dic_: #hash function  in dictionary => O(1) #리스트의 경우 O(n)
     print("찾았다!")
 else:
     print("없다")
