@@ -8,10 +8,8 @@
 #BFS(Breadth)
 ## 외우기!!
 #변수: graph, start_v, q, visited=[]
-
-#***여러가지로 확장해보는 게 좋음***
+#***여러가지로 "확장"해보는 게 좋음***
 #리스트 사용하는 경우도 꽤 많으니, 리스트 & 딕셔너리 둘다 잘 알아두기!
-
 
 from collections import deque
 
@@ -54,3 +52,26 @@ graph = {
  # 위의 인접 리스트를 시각화된 그래프를 머릿속으로 떠올리기
 start_v = 0
 bfs(graph, start_v=0)
+
+
+#DFS (Depth-First Search)
+# - 특징: 깊이 들어갔다가 빠져나올 곳을 알아야 하므로, Stack 혹은 재귀 자료구조를 사용
+# - 구동 방식: next_v를 방문 안했으면 dfs 재귀적 실행 
+# - 구동 방식 명확하게 이해하고 있어야 함! (챕터9, DFS 코드 설계와 구현)
+
+def defs(graph, cur_v):
+    #a. 방문: 1. 스택에 넣기 2. 방문도장 찍기
+    #b. cur_v와 연결된 노드 찾기: 1. 연결된 노드 for loop 2. 방문 도장 찍혔는지 확인
+    #c. next_v 방문 안했으면: 1. 해당 vertex에 대해 재귀적 함수 dfs(next_v) 모두 실행 1. 방문 도장 찍기
+
+    #a.
+    visited[cur_v] = True
+
+    #b.
+    for next_v in graph[cur_v]:
+        if not visited[next_v]:
+            #1. 재귀적
+            dfs(next_v)
+
+            # stack.append(next_v)
+            # visited[next_v] = True
