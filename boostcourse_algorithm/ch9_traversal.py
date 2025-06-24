@@ -8,6 +8,11 @@
 #BFS(Breadth)
 ## 외우기!!
 #변수: graph, start_v, q, visited=[]
+
+#***여러가지로 확장해보는 게 좋음***
+#리스트 사용하는 경우도 꽤 많으니, 리스트 & 딕셔너리 둘다 잘 알아두기!
+
+
 from collections import deque
 
 def bfs(graph, start_v):
@@ -16,15 +21,23 @@ def bfs(graph, start_v):
     q.append(start_v)
 
     # 시작점 방문 도장
-    visited = {start_v:True}
+    #visited = {start_v:True}   #딕셔너리 생성과 동시에 삽입
+    #visited = {} / visited[start_v] = True
+    visited = [False] * 8 #리스트로 쓰려면 개수대로 초기 세팅을 해주어야 함
+    print(visited)
+    visited[start_v] = True
 
     while q:
         #방문
+        print(q)
         cur_v = q.popleft()
+        print(cur_v)
+        if cur_v == 5: print("5번 노드 찾았다!")
 
-        #다음 방문 '예약' + '방문' 도장 찍기
+        #다음 방문 '예약' + '방문 도장' 찍기
         for next_v in graph[cur_v]: #인접 리스트, graph[cur_v]=>연결된 노드
-            if next_v not in visited:  #방문 하지 않았을 때에만 예약한다.
+            if not visited[next_v]:  # -- list
+            #if next_v not in visited:  #방문 하지 않았을 때에만 예약한다. -- dict
                 q.append(next_v)  #예약
                 visited[next_v] = True #방문 도장
 
@@ -40,5 +53,4 @@ graph = {
 }
  # 위의 인접 리스트를 시각화된 그래프를 머릿속으로 떠올리기
 start_v = 0
-res = bfs(graph, start_v=0)
-print(res)
+bfs(graph, start_v=0)
