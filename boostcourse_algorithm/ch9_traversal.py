@@ -59,7 +59,7 @@ bfs(graph, start_v=0)
 # - 구동 방식: next_v를 방문 안했으면 dfs 재귀적 실행 
 # - 구동 방식 명확하게 이해하고 있어야 함! (챕터9, DFS 코드 설계와 구현)
 
-def defs(graph, cur_v):
+def dfs(graph, cur_v):
     #a. 방문: 1. 스택에 넣기 2. 방문도장 찍기
     #b. cur_v와 연결된 노드 찾기: 1. 연결된 노드 for loop 2. 방문 도장 찍혔는지 확인
     #c. next_v 방문 안했으면: 1. 해당 vertex에 대해 재귀적 함수 dfs(next_v) 모두 실행 1. 방문 도장 찍기
@@ -75,3 +75,16 @@ def defs(graph, cur_v):
 
             # stack.append(next_v)
             # visited[next_v] = True
+
+
+# 구현
+visited = {}
+def dfs(cur_v):
+    #현재 노드방문 
+    visited[cur_v] = True
+    print(cur_v)
+    
+    #다음 노드 dfs
+    for next_v in graph[cur_v]:
+        if next_v not in visited:
+            dfs(next_v)
